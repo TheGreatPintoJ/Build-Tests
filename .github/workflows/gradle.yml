@@ -23,6 +23,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17' # Change if needed
+      
+      - name: Ensure Permissions
+        run: chmod a+x gradlew
 
       - name: Build with Gradle
         run: ./gradlew clean build
