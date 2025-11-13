@@ -54,6 +54,9 @@ jobs:
           FILE=$(find build/libs -name "*.jar" | head -n 1)
           echo "file=$FILE" >> $GITHUB_OUTPUT
 
+      - name: Set GitHub identity
+        run: git config --global user.email "you@example.com" && git config --global user.name "Github Actions"
+
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
