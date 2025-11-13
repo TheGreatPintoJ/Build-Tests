@@ -30,9 +30,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build
 
-      - name: Set GitHub identity
-        run: git config --global user.email "you@example.com" && git config --global user.name "Github Actions"
-
       - name: Get PR info
         id: pr
         run: |
