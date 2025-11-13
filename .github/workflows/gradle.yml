@@ -30,6 +30,9 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build
 
+      - name: Set GitHub identity
+        run: git config --global user.email "you@example.com" && git config --global user.name "Github Actions"
+
       - name: Get PR info
         id: pr
         run: |
@@ -53,9 +56,6 @@ jobs:
         run: |
           FILE=$(find build/libs -name "*.jar" | head -n 1)
           echo "file=$FILE" >> $GITHUB_OUTPUT
-
-      - name: Set GitHub identity
-        run: git config --global user.email "you@example.com" && git config --global user.name "Github Actions"
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
