@@ -42,8 +42,11 @@ jobs:
         id: tag
         run: |
           TAG_NAME="${{ steps.pr.outputs.title }}"
-          # Sanitize tag name (remove spaces/special chars)
           SAFE_TAG=$(echo "$TAG_NAME" | tr ' ' '_' | tr -cd '[:alnum:]_.-')
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
           git tag -a "$SAFE_TAG" -m "Release $TAG_NAME"
           git push origin "$SAFE_TAG"
           echo "tag=$SAFE_TAG" >> $GITHUB_OUTPUT
