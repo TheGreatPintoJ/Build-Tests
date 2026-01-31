@@ -1,4 +1,4 @@
-name: Release on merge to master
+name: Publish on merge to master
 
 on:
   pull_request:
@@ -68,4 +68,25 @@ jobs:
           body: ${{ steps.pr.outputs.body }}
           files: ${{ steps.jar.outputs.file }}
         env:
-          GITHUB_TOKEN: ${{ secrets.PUBLISH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # --- mc-publish integration ---
+      - name: Publish to Modrinth
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: M68UzuBy
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+          name: ${{ github.event.pull_request.title }}
+          version: ${{ github.event.pull_request.title }}
+          changelog: ${{ github.event.pull_request.body }}
+
+          loaders: |
+            paper
+            spigot
+
+          game-versions: |
+            >=1.21
+
+          game-versions: |
+            >=1.21
