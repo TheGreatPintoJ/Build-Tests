@@ -16,7 +16,7 @@ jobs:
       - name: Publish to Modrinth
         uses: Kir-Antipov/mc-publish@v3.3
         with:
-          modrinth-id: bgiFH2JU
+          modrinth-id: M68UzuBy
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
 
           loaders: |
