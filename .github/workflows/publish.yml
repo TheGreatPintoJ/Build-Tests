@@ -1,0 +1,27 @@
+#file: noinspection SpellCheckingInspection
+name: Release on merge to master
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      # --- mc-publish integration ---
+      - name: Publish to Modrinth
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: bgiFH2JU
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+          loaders: |
+            paper
+            spigot
+
+          game-versions: |
+            >=1.21
