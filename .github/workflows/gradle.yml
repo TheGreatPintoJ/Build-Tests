@@ -87,6 +87,3 @@ jobs:
 
           game-versions: |
             >=1.21
-
-          game-versions: |
-            >=1.21
